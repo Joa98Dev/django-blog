@@ -1,4 +1,5 @@
-from django.shortcuts import render
+#from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.views import View
 from .forms import UserRegisterForm
 
@@ -10,4 +11,10 @@ class RegisterView(View):
     
     # post will handle the HTTP POST request
     def post(self, request):
-        pass
+        form = UserRegisterForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+        else:
+            return HttpResponse("ERROR\Something went wrong :(")
