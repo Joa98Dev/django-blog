@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import Index, DetailPostView
+from .views import Index, DetailPostView, LikePost
 
 urlpatterns = [
    # path('admin/', admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
     path('', Index.as_view(), name='index'),
     path('<int:pk>/', DetailPostView.as_view(), name='detail_post'),
+    path('<int:pk>/like', LikePost.as_view(), name='like_post'),
 ]
