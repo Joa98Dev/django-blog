@@ -29,10 +29,23 @@
 
     {% if request.user.is_authenticated  %}
     {% if liked_by_user  %}
+
+    <form method="POST" action="{% url 'like_post' object.id %}">
+      {% csrf_token %}
+      <button class="btn btn-outline-primary">Unlike this post</button>
+    </form>
+    
     {% else %}
+    
+    <form method="POST" action="{% url 'like_post' object.id %}">
+      {% csrf_token %}
+      <button class="btn btn-outline-primary">Like this post</button>
+    </form>
     {% endif %}
     {% else %}
-    <button class="btn btn-outline-primary" disabled>Log in to like this post</button>
+    
+      <button class="btn btn-outline-primary" disabled>Login to like this post</button>
+    
     {% endif %}
   </div>
 </div>
