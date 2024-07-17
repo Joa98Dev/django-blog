@@ -12,6 +12,15 @@ class Index(ListView):
 
 
 
+class Featured(ListView):
+    model = BlogPost
+    queryset = BlogPost.objects.filter(featured=True).order_by('-date')
+    template_name = 'microblog/featured.html'
+    paginate_by = 1
+
+
+
+
 class DetailPostView(DetailView):
     model = BlogPost
     template_name = 'microblog/post.html'
