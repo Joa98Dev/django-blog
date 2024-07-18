@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="row">
-  <div class="col-md-6 col-12 mx-md-auto mx-3 mt-5 mb-5">
+  <div class="col-md-6 col-11 mx-md-auto mx-3 mt-5 mb-5">
     <h1 class="fw-bolder">Django Blog</h1>
     <h5 class="text-muted">A small django microblog project</h5>
   </div>
@@ -11,7 +11,7 @@
 
 {% for object in object_list %}
 <div class="row">
-  <div class="col-md-6 col-12 mx-md-auto mx-3 mt-5 mb-5">
+  <div class="col-md-6 col-11 mx-md-auto mx-3 mt-5 mb-5">
     <h3 class="fw-bolder">{{ object.title }}</h3>
     <p class="text-muted">{{ object.date }} </p>
     <p class="text-muted">Posted by {{ object.author.username }}</p>
