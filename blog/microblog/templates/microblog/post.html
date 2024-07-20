@@ -14,6 +14,11 @@
     <p class="text-muted">{{ object.date }}</p>
     <p class="text-muted">Posted by  {{ object.author.username }}</p>
 
+     {# Debugging outputs #}
+    <p>User: {{ request.user.username }}</p>
+    <p>Author: {{ object.author.username }}</p>
+    <p>Is authenticated: {{ request.user.is_authenticated }}</p>
+
     {% if request.user.username == object.author.username %}
     <div class="pb-3">
       <a href="{% url 'delete_post' object.pk %}">Delete this post</a>

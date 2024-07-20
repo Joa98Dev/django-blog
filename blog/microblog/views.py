@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import ListView, DetailView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import BlogPost
 
 # Create your views here.
@@ -64,7 +65,11 @@ class LikePost(View):
         return redirect('detail_post',pk=pk)
 
 
-class DeletePostView(DeleteView):
+class DeletePostView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = BlogPost
     template_name = 'microblog/blog_delete.html'
     success_url = reverse_lazy('index')
+
+    def test_func(self):
+        micropost = BlogPost.objects.get(id=self.kwargs.get('pk'))
+        return self.request.user.id == micropost.author.id
