@@ -1,0 +1,19 @@
+{% extends 'microblog/base.html' %}
+
+{% block content %}
+
+<a href="{% url 'index' %}">Cancel</a>
+
+<div class="row">
+  <div class="col-md-6 col-11 mx-md-auto">
+    <h1>Delete Blog Post</h1>
+    <h3>Are you sure you want to delete this post?</h3>
+
+    <form method="POST">
+      {% csrf_token %}
+      <button class="btn btn-primary" type="submit">Confirm</button>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}

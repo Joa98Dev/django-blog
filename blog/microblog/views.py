@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, DeleteView
+from django.urls import reverse_lazy
 from .models import BlogPost
 
 # Create your views here.
@@ -61,3 +62,9 @@ class LikePost(View):
 
         micropost.save()
         return redirect('detail_post',pk=pk)
+
+
+class DeletePostView(DeleteView):
+    model = BlogPost
+    template_name = 'microblog/blog_delete.html'
+    success_url = reverse_lazy('index')
